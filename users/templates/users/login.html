@@ -1,0 +1,23 @@
+{% extends 'notes_app/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5>Вход</h5>
+        <br/>
+        <form method="POST">
+            {% csrf_token %}
+            <p><label>Введите логин : &nbsp</label>
+            <input type="text" name="username" required></p>
+            <p><label>Введите пароль :</label>
+            <input type="password" name="password" required></p>
+            <p><button name="submit" class="btn btn-dark">Подтвердить</button></p>
+        </form>
+        {% if error %}
+        <p>Произошла ошибка с логином или паролем</p>
+        <p>Попробуйте ещё раз или создайте новый аккаунт</p>
+        {% endif %}
+        <a class="btn btn-outline-dark" href="{% url 'users:register' %}">Создать новый аккаунт</a>
+    </div>
+</div>
+{% endblock content %}

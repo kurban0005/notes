@@ -1,0 +1,21 @@
+{% extends "notes_app/base.html" %}
+
+{% block content %}
+
+
+<div>
+    <h5>Редактирование заметки: </h5>
+    <form action="{% url 'notes_app:edit_note' note.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-dark btn-sm" name="submit">Сохранить</button>
+        <a class="btn btn-dark btn-sm"
+           href="{% url 'notes_app:delete_note' note.id %}">Удалить заметку</a>
+
+    </form>
+    <br/>
+    <a class="btn btn-outline-dark btn-sm" href="{% url 'notes_app:note' note.id  %}">Назад</a>
+</div>
+
+
+{% endblock content %}

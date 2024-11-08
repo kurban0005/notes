@@ -1,0 +1,31 @@
+{% extends 'notes_app/base.html' %}
+
+{% block content %}
+<div>
+    <a class="btn btn-dark btn-sm" href="{% url 'notes_app:new_note' %}">
+        Новая заметка</a>
+    <br/><br/>
+    <h6>Выберите нужную заметку :</h6>
+    <br/>
+    <ul type="SQUARE">
+        {% for note in notes %}
+        <li>
+            <h5>
+                <a class="nav-link text-body" href="{% url 'notes_app:note' note.id %}">
+                    {{ note.title.upper|linebreaks }}
+                    <small><small>
+                        <p class="card-text text-secondary">
+                            {{ note.date_add|date:"d M. Yг. | H:i" }}</p>
+                    </small></small>
+                </a>
+            </h5>
+            <br/>
+        </li>
+        {% empty %}
+        <li>Заметки отсутствуют</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-outline-dark btn-sm"
+       href="{% url 'notes_app:index' %}">Назад</a>
+</div>
+{% endblock content %}
